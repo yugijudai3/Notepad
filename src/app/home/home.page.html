@@ -1,15 +1,43 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      メモ帳
     </ion-title>
+    <ion-buttons slot="end">
+        <ion-button end fill="clear">
+            <ion-icon name="add-circle"></ion-icon>
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <ion-item>
-      <ion-card-title>タイトル</ion-card-title>
-    </ion-item>
+  <ion-item-sliding>
+  <ion-card *ngFor="let p of post" >
+    <ion-card-content>
+      <div margin-bottom>{{p.message}}</div>
+    </ion-card-content>
   </ion-card>
+</ion-item-sliding>
 </ion-content>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCGlzRYWBKHz6cUzv_iG08auBiD-WojHh4",
+    authDomain: "notepad-9a5f2.firebaseapp.com",
+    databaseURL: "https://notepad-9a5f2.firebaseio.com",
+    projectId: "notepad-9a5f2",
+    storageBucket: "notepad-9a5f2.appspot.com",
+    messagingSenderId: "114549547445",
+    appId: "1:114549547445:web:23b3ece3fd393dfe"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
