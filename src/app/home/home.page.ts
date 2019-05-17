@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { AlertController,ToastController } from '@ionic/angular';
 import { sanitizeHtml } from '@angular/core/src/sanitization/sanitization';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { Post } from '../models/post';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +10,11 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  constructor(
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
+  ){}
+
   post: {
     message: string
   }[]=[{
@@ -15,4 +22,8 @@ export class HomePage {
   },{
     message: "来週の打ち合わせ"
   }];
+
+  async presentPrompt(post: Post){
+    const alert = await this.alertCtrl
+  }
 }
