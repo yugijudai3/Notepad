@@ -4,7 +4,7 @@
       メモ帳
     </ion-title>
     <ion-buttons slot="end">
-        <ion-button end fill="clear">
+        <ion-button end fill="clear" size="large" (click)="presentPrompt()">
             <ion-icon name="add-circle"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -17,8 +17,31 @@
     <ion-card-content>
       <div margin-bottom>{{p.message}}</div>
     </ion-card-content>
+    <ion-col size="6" size-sm>
+      <ion-button fill="clear" size="small" (click)="deleteText()">
+        <ion-icon name="trash"></ion-icon>
+        <div>削除</div>
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" size-sm>
+      <ion-button fill="clear" size="small" (click)="alreadyRead()">
+        <ion-icon name="checkmark"></ion-icon>
+        <div>既読</div>
+      </ion-button>
+    </ion-col>
   </ion-card>
 </ion-item-sliding>
+<ion-footer translucent="true">
+  <ion-toolbar style="height:200px">
+    <ion-title>aaa</ion-title>
+    <ion-item>
+        <ion-textarea placeholder="メッセージを入力" (ionChange)="textChange()"></ion-textarea>
+        <ion-button type="submit" fill="clear">
+            <ion-icon name="send" size="large"></ion-icon>
+        </ion-button>
+      </ion-item>
+  </ion-toolbar>
+</ion-footer>
 </ion-content>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
