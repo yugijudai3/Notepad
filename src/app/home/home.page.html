@@ -4,8 +4,8 @@
       メモ帳
     </ion-title>
     <ion-buttons slot="end">
-        <ion-button end fill="clear" size="large" (click)="presentPrompt()">
-            <ion-icon name="add-circle"></ion-icon>
+        <ion-button end fill="clear" size="large" (click)="createMemo()">
+            新規作成
         </ion-button>
       </ion-buttons>
   </ion-toolbar>
@@ -31,17 +31,6 @@
     </ion-col>
   </ion-card>
 </ion-item-sliding>
-<ion-footer translucent="true">
-  <ion-toolbar style="height:200px">
-    <ion-title>aaa</ion-title>
-    <ion-item>
-        <ion-textarea placeholder="メッセージを入力" (ionChange)="textChange()"></ion-textarea>
-        <ion-button type="submit" fill="clear">
-            <ion-icon name="send" size="large"></ion-icon>
-        </ion-button>
-      </ion-item>
-  </ion-toolbar>
-</ion-footer>
 </ion-content>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->

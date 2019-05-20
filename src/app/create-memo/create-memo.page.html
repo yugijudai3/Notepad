@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>新規作成</ion-title>
+    <ion-buttons slot="end">
+        <ion-button end fill="clear" size="large" class="cancel" (click)="cancel()">
+            キャンセル
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-textarea placeholder="メッセージを入力" (ionChange)="textChange()"></ion-textarea>
+        <ion-button type="submit" class="submit" fill="clear">
+            <ion-icon name="send" size="large"></ion-icon>
+        </ion-button>
+      </ion-item>
+</ion-content>

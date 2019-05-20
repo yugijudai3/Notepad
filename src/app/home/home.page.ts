@@ -18,7 +18,8 @@ export class HomePage {
   constructor(
     private alertCtrl: AlertController,
     private toastCtrl: ToastController,
-    private element: ElementRef
+    private element: ElementRef,
+    private router: Router
   ){}
 
   posts: {userName: string; message: string; createdDate: any}[]
@@ -54,6 +55,10 @@ export class HomePage {
     await alert.present();
   }
 
+  createMemo(){
+    this.router.navigate(["/create-memo"]);
+  }
+
   async deleteText(){
     const alert = await this.alertCtrl.create({
       header: "メモを削除",
@@ -80,22 +85,5 @@ export class HomePage {
       }]
     });
     await alert.present();
-  }
-
-  @HostListener('document:keydown.enter', ['$event']) 
-  onKeydownHandler(evt: KeyboardEvent) {
-  this.textChange()
-  }
-   Text = {} as Text;
-
-   ngAfterViewInit(){
-   this.textChange()
-   }
-
-  textChange():void{
-    const textArea = this.element.nativeElement.getElementsByTagName("textarea")[0];
-    textArea.style.overflow = "hidden";
-    textArea.style.height = 'auto';
-    textArea.style.height = textArea.scrollHeight + 'px';
   }
 }
