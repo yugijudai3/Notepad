@@ -1,5 +1,10 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Post } from '../models/post';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import * as firebase from 'firebase';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-memo',
@@ -8,9 +13,18 @@ import { Router } from '@angular/router';
 })
 export class CreateMemoPage implements OnInit {
 
+  message: string;
+  post: Post;
+  posts: Post[];
+
+  postscollection: AngularFirestoreCollection<Post>;
+
   constructor(
     private element: ElementRef,
-    private router: Router
+    private router: Router,
+    private afStore: AngularFirestore,
+    private afAuth: AngularFireAuth,
+    private toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
@@ -36,6 +50,18 @@ export class CreateMemoPage implements OnInit {
     
   }
 
+  addPost(){
+    this.post = {
+      id: "",
+      userName: this.afAuth.auth.currentUser.displayName,
+      message: this.message,
+      created: firebase.firestore.FieldValue.serverTimestamp
+    };
+
+    //Firebaseにデータを追加
+  }
+
+  //ホームに戻る
   cancel(){
     this.router.navigate(["/home"]);
   }
