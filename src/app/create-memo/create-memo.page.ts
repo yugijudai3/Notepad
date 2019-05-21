@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
+import { NgModule } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
@@ -11,6 +12,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './create-memo.page.html',
   styleUrls: ['./create-memo.page.scss'],
 })
+
 export class CreateMemoPage implements OnInit {
 
   message: string;
@@ -24,7 +26,8 @@ export class CreateMemoPage implements OnInit {
     private router: Router,
     private afStore: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+
   ) { }
 
   ngOnInit() {

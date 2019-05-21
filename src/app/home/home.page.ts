@@ -3,9 +3,6 @@ import { AlertController,ToastController } from '@ionic/angular';
 import { sanitizeHtml } from '@angular/core/src/sanitization/sanitization';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/post';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase';
 import { Router } from '@angular/router';
 import { async } from 'q';
 
