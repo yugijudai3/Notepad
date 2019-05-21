@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
+import { NgModule } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
@@ -25,7 +26,8 @@ export class CreateMemoPage implements OnInit {
     private router: Router,
     private afStore: AngularFirestore,
     private afAuth: AngularFireAuth,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+
   ) { }
 
   ngOnInit() {
@@ -60,6 +62,20 @@ export class CreateMemoPage implements OnInit {
     };
 
     //Firebaseにデータを追加
+    this.afStore.collection("posts").add(this.post).then(docRef => {
+      //一度投稿を追加した後に、idを追加する
+      this.postscollection.doc(docRef.id).update({
+        id: docRef.id
+      });
+      //追加できたら入力フィールドを空にする
+      this.message = "";
+    }).catch(async error => {
+      //エラーをToastで表示
+      const toast = await this.toastCtrl.create({
+        message: error.toString(),
+      });
+      await toast.present();
+    });
   }
 
   //ホームに戻る
