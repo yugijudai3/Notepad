@@ -11,6 +11,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './create-memo.page.html',
   styleUrls: ['./create-memo.page.scss'],
 })
+
 export class CreateMemoPage implements OnInit {
 
   message: string;
