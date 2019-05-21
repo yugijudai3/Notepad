@@ -59,6 +59,20 @@ export class CreateMemoPage implements OnInit {
     };
 
     //Firebaseにデータを追加
+    this.afStore.collection("posts").add(this.post).then(docRef => {
+      //一度投稿を追加した後に、idを追加する
+      this.postscollection.doc(docRef.id).update({
+        id: docRef.id
+      });
+      //追加できたら入力フィールドを空にする
+      this.message = "";
+    }).catch(async error => {
+      //エラーをToastで表示
+      const toast = await this.toastCtrl.create({
+        message: error.toString(),
+      });
+      await toast.present();
+    });
   }
 
   //ホームに戻る
