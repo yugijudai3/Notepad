@@ -15,7 +15,7 @@ import { CreateMemoPage } from './create-memo.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild([{path: "./create-memo/create-memo.module#CreateMemoPageModule", component: CreateMemoPage}]),
+    RouterModule.forChild([{path: "", component: CreateMemoPage, redirectTo: "./create-memo.page"}]),
     AngularFirestore,
     AngularFirestoreCollection,
     AngularFireAuth,
