@@ -19,7 +19,7 @@ export class CreateMemoPage implements OnInit {
   constructor(
     private element: ElementRef,
     private router: Router,
-    private toastCtrl: ToastController,
+    private toastCtrl: ToastController
   ) { }
 
   ngOnInit() {
