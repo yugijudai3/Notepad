@@ -2,10 +2,10 @@ import { Component, OnInit, ElementRef, HostListener, ViewChild } from '@angular
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
 import { NgModule } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { ToastController } from '@ionic/angular';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-create-memo',
@@ -27,7 +27,6 @@ export class CreateMemoPage implements OnInit {
     private afStore: AngularFirestore,
     private afAuth: AngularFireAuth,
     private toastCtrl: ToastController,
-
   ) { }
 
   ngOnInit() {
