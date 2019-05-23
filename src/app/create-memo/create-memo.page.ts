@@ -4,13 +4,24 @@ import { Post } from '../models/post';
 import { NgModule } from '@angular/core';
 import * as firebase from 'firebase';
 import { ToastController } from '@ionic/angular';
+<<<<<<< HEAD
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+=======
+import { FirebaseModule } from '../firebase/firebase.module';
+>>>>>>> b1432460e391e61bae3c59033b45d4e285c5d758
 
 @Component({
   selector: 'app-create-memo',
   templateUrl: './create-memo.page.html',
   styleUrls: ['./create-memo.page.scss'],
+})
+
+@NgModule({
+  imports: [AngularFirestore,
+    AngularFirestoreCollection,
+    AngularFireAuth,
+    FirebaseModule]
 })
 
 export class CreateMemoPage implements OnInit {
