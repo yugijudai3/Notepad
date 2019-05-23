@@ -3,8 +3,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'create-memo', loadChildren: './create-memo/create-memo.module#CreateMemoPageModule' },
+  { path: 'app', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'home', loadChildren: './create-memo/create-memo.module#CreateMemoPageModule' },
 ];
 
 @NgModule({

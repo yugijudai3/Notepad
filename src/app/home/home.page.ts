@@ -53,7 +53,7 @@ export class HomePage {
   }
 
   createMemo(){
-    this.router.navigate(["/create-memo"]);
+    this.router.navigateByUrl("/home");
   }
 
   async deleteText(){
