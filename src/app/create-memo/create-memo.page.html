@@ -2,39 +2,27 @@
   <ion-toolbar>
     <ion-title>新規作成</ion-title>
     <ion-buttons slot="end">
-        <ion-button end fill="clear" size="large" class="cancel" (click)="cancel()">
-            キャンセル
-        </ion-button>
-      </ion-buttons>
+      <ion-button
+        end
+        fill="clear"
+        size="large"
+        class="cancel"
+        (click)="cancel()"
+      >
+        キャンセル
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item>
-        <ion-textarea placeholder="メッセージを入力" (ionChange)="textChange()"></ion-textarea>
-        <ion-button type="submit" class="submit" fill="clear">
-            <ion-icon name="send" size="large"></ion-icon>
-        </ion-button>
-      </ion-item>
+  <ion-item>
+    <ion-textarea
+      placeholder="メッセージを入力"
+      (ionChange)="textChange()"
+    ></ion-textarea>
+    <ion-button type="submit" class="submit" fill="clear">
+      <ion-icon name="send" size="large"></ion-icon>
+    </ion-button>
+  </ion-item>
 </ion-content>
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCGlzRYWBKHz6cUzv_iG08auBiD-WojHh4",
-    authDomain: "notepad-9a5f2.firebaseapp.com",
-    databaseURL: "https://notepad-9a5f2.firebaseio.com",
-    projectId: "notepad-9a5f2",
-    storageBucket: "notepad-9a5f2.appspot.com",
-    messagingSenderId: "114549547445",
-    appId: "1:114549547445:web:23b3ece3fd393dfe"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>
