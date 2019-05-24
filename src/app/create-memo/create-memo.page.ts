@@ -19,36 +19,49 @@ export class CreateMemoPage implements OnInit {
     posts: Post[];
     Text = {} as Text;
 
+    postscollection: AngularFirestoreCollection<Post>;
+
     constructor(
         private element: ElementRef,
         private router: Router,
+        private afStore: AngularFirestore,
+        private afAuth: AngularFireAuth,
         private toastCtrl: ToastController
     ) { }
 
   ngOnInit() {
     }
 
-    // テキストエリアのheightを自動で変更する
-    @HostListener('document:keydown.enter', ['$event'])
-    onKeydownHandler(evt: KeyboardEvent) {
-        this.textChange();
-    }
-
-    // tslint:disable-next-line:use-life-cycle-interface
-    ngAfterViewInit() {
-        this.textChange();
-    }
-
-    textChange(): void {
-        const textArea = this.element.nativeElement.getElementsByTagName('textarea')[0];
-        textArea.style.overflow = 'hidden';
-        textArea.style.height = 'auto';
-        textArea.style.height = textArea.scrollHeight + 'px';
-
-    }
-
     // ホームに戻る
     cancel() {
+        this.afStore.firestore.enableNetwork();
         this.router.navigate(['/home']);
+    }
+
+    addPost(){
+      console.log(this.message);
+      this.post ={
+        id: "",
+        userName: this.afAuth.auth.currentUser.displayName,
+        message: this.message,
+        created: firebase.firestore.FieldValue.serverTimestamp()
+      }
+
+          //ここでFirestoreにデータを追加する
+    this.afStore.collection("posts").add(this.post).then(docRef => {
+      //一度投稿を追加した後に、idを更新する
+      this.postscollection.doc(docRef.id).update({
+        id: docRef.id
+      });
+      //追加できたら入力フィールドを空にする
+      this.message = "";
+    }).catch(async error =>{
+      //エラーをToastControllerで表示
+      const toast = await this.toastCtrl.create({
+        message: error.toString(),
+        duration: 3000
+      });
+      await toast.present();
+    });
     }
 }

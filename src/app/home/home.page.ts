@@ -17,7 +17,11 @@ export class HomePage {
         private toastCtrl: ToastController,
         private element: ElementRef,
         private router: Router
-    ) { }
+    ){}
+
+    ngOnInit(){
+        
+    }
 
     posts: { userName: string; message: string; createdDate: any }[];
 
@@ -82,5 +86,9 @@ export class HomePage {
             }]
         });
         await alert.present();
+    }
+
+    gotoLogin(){
+        this.router.navigateByUrl('/login');
     }
 }
