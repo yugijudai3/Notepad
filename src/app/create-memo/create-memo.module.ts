@@ -2,38 +2,33 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { AngularFireAuth } from '@angular/fire/auth';
 
 import { IonicModule } from '@ionic/angular';
 
 import { CreateMemoPage } from './create-memo.page';
 
-
+const routes: Routes = [
+  {
+    path: '',
+    component: CreateMemoPage
+  }
+];
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RouterModule.forChild([{path: "", component: CreateMemoPage, redirectTo: "./create-memo.page"}]),
-    AngularFirestore,
-    AngularFirestoreCollection,
-    AngularFireAuth,
-    CreateMemoPage
-  ],
-  declarations: [CreateMemoPage,AngularFirestore,
-    AngularFirestoreCollection,
-    AngularFireAuth],
-  exports: [AngularFirestore,
-    AngularFirestoreCollection,
-    AngularFireAuth]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [CreateMemoPage],
+    exports: []
 })
 
 export class CreateMemoPageModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: CreateMemoPageModule,
-      providers: [ ]
-    };
-  }
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: CreateMemoPageModule,
+            providers: []
+        };
+    }
 }

@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { CreateMemoPageModule } from './create-memo/create-memo.module';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'app', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'home', component: CreateMemoPageModule },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
+  { path: 'create-memo', loadChildren: './create-memo/create-memo.module#CreateMemoPageModule' },
 ];
 
 @NgModule({
