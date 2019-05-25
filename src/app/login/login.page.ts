@@ -44,4 +44,8 @@ export class LoginPage implements OnInit {
     });
   }
 
+  gotoSignup(){
+    this.router.navigate(["/signup"]);
+  }
+
 }

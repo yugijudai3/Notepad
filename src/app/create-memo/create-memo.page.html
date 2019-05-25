@@ -22,8 +22,9 @@
       placeholder="メッセージを入力"
       name="message"
       auto-grow="true"
+      [(ngModel)]="message"
     ></ion-textarea>
-    <ion-button type="submit" fill="clear">
+    <ion-button type="submit" fill="clear" [disabled]="!f.form.valid">
       <ion-icon name="send" size="large"></ion-icon>
     </ion-button>
   </ion-item>

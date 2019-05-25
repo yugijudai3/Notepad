@@ -6,6 +6,8 @@ import { ToastController } from '@ionic/angular';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { async } from 'q';
+
 @Component({
     selector: 'app-create-memo',
     templateUrl: './create-memo.page.html',
@@ -17,7 +19,6 @@ export class CreateMemoPage implements OnInit {
     message: string;
     post: Post;
     posts: Post[];
-    Text = {} as Text;
 
     postscollection: AngularFirestoreCollection<Post>;
 
@@ -39,23 +40,24 @@ export class CreateMemoPage implements OnInit {
     }
 
     addPost(){
-      console.log(this.message);
       this.post ={
         id: "",
         userName: this.afAuth.auth.currentUser.displayName,
         message: this.message,
         created: firebase.firestore.FieldValue.serverTimestamp()
-      }
+      };
 
-          //ここでFirestoreにデータを追加する
+    //ここでFirestoreにデータを追加する
     this.afStore.collection("posts").add(this.post).then(docRef => {
       //一度投稿を追加した後に、idを更新する
       this.postscollection.doc(docRef.id).update({
         id: docRef.id
       });
+
       //追加できたら入力フィールドを空にする
       this.message = "";
     }).catch(async error =>{
+      console.log(error);
       //エラーをToastControllerで表示
       const toast = await this.toastCtrl.create({
         message: error.toString(),
