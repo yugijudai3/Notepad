@@ -20,7 +20,7 @@ import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
         StatusBar,
         AngularFireModule,
         AngularFirestoreModule,
-        AngularFireAuth,
+        AngularFireAuthModule,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],

@@ -40,6 +40,8 @@ export class CreateMemoPage implements OnInit {
     }
 
     addPost(){
+      this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+
       this.post ={
         id: "",
         userName: this.afAuth.auth.currentUser.displayName,
@@ -65,5 +67,6 @@ export class CreateMemoPage implements OnInit {
       });
       await toast.present();
     });
+      this.router.navigate(['/home']);
     }
 }

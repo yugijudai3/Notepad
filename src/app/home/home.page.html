@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-button (click)="gotoLogin()">
+            <ion-icon name="log-out"></ion-icon>
+          </ion-button>
+    </ion-buttons>
     <ion-title>
       メモ帳
     </ion-title>
@@ -7,20 +12,19 @@
         <ion-button end fill="clear" size="large" (click)="createMemo()">
             新規作成
         </ion-button>
-        <ion-button (click)="gotoLogin()">ログインする</ion-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item-sliding>
-  <ion-card *ngFor="let p of post">
+  <ion-card *ngFor="let p of posts; let i = index">
     <ion-card-content>
-      <h2 margin-bottom>名前</h2>
+      <h2 margin-bottom>{{p.userName}}</h2>
       <div margin-bottom>{{p.message}}</div>
     </ion-card-content>
     <ion-col size="6" size-sm>
-      <ion-button fill="clear" size="small" (click)="deleteText()">
+      <ion-button fill="clear" size="small" (click)="deletePost()">
         <ion-icon name="trash"></ion-icon>
         <div>削除</div>
       </ion-button>
