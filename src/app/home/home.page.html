@@ -20,17 +20,17 @@
   <ion-item-sliding>
   <ion-card *ngFor="let p of posts; let i = index">
     <ion-card-content>
-      <h2 margin-bottom>{{p.userName}}</h2>
-      <div margin-bottom>{{p.message}}</div>
+      <h2 margin-bottom class="userName">{{p.userName}}</h2>
+      <div margin-bottom class="message" ng-bind="multiLineText">{{p.message}}</div>
     </ion-card-content>
     <ion-col size="6" size-sm>
-      <ion-button fill="clear" size="small" (click)="deletePost(p)">
+      <ion-button fill="clear" size="default" (click)="deletePost(p)">
         <ion-icon name="trash"></ion-icon>
         <div>削除</div>
       </ion-button>
     </ion-col>
     <ion-col size="6" size-sm>
-      <ion-button fill="clear" size="small" (click)="alreadyRead()">
+      <ion-button fill="clear" size="default" (click)="alreadyRead()">
         <ion-icon name="checkmark"></ion-icon>
         <div>既読</div>
       </ion-button>
