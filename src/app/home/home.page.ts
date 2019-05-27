@@ -54,6 +54,8 @@ export class HomePage {
     }
 
     deletePost(post: Post){
+        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+
         this.postscollection.doc(post.id).delete().then(async() => {
             const toast = await this.toastCtrl.create({
                 message: "投稿を削除しました",
