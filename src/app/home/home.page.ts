@@ -37,15 +37,7 @@ export class HomePage {
         this.getPosts();
     }
 
-    //投稿をデータベースから取得
-    getPosts(){
-        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
-
-        this.postscollection.valueChanges().subscribe(data => {
-            this.posts = data;
-        });
-    }
-
+    
     //投稿ページへ
     createMemo(){
         this.router.navigate(["/create-memo"]);
@@ -54,6 +46,15 @@ export class HomePage {
     //ログインページへ
     gotoLogin(){
         this.router.navigateByUrl('/login');
+    }
+
+    //投稿をデータベースから取得
+    getPosts(){
+        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+
+        this.postscollection.valueChanges().subscribe(data => {
+            this.posts = data;
+        });
     }
 
     //投稿を削除
