@@ -76,6 +76,30 @@ export class HomePage {
         });
     }
 
+    //既読
+    async readUser(post: Post){
+        const alert = await this.alertCtrl.create({
+            header: "既読",
+            message: "井深",
+            buttons: [
+                {
+                text: "既読",
+                handler: () => {
+
+                    this.postscollection.doc(post.id).update({
+                        readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
+                    });
+                }
+                },
+                {
+                text: "閉じる",
+                role: "cancel"
+                }
+            ]
+        });
+        await alert.present();
+    }
+
     //ログアウト処理
     logout(){
         this.afStore.firestore.disableNetwork();

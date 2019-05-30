@@ -3,4 +3,5 @@ export interface Post {
     userName: string;
     message: string;
     created: any;
+    readUser: [];
 }

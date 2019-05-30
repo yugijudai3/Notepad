@@ -46,7 +46,8 @@ export class CreateMemoPage implements OnInit {
         id: "",
         userName: this.afAuth.auth.currentUser.displayName,
         message: this.message,
-        created: firebase.firestore.FieldValue.serverTimestamp()
+        created: firebase.firestore.FieldValue.serverTimestamp(),
+        readUser: []
       };
 
     //ここでFirestoreにデータを追加する
