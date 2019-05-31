@@ -8,6 +8,7 @@ import { async } from 'q';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { read } from 'fs';
 
 @Component({
     selector: 'app-home',
@@ -19,6 +20,7 @@ export class HomePage {
     message: string;
     post: Post;
     posts: Post[];
+    
   
     postscollection: AngularFirestoreCollection<Post>;
 
@@ -78,17 +80,20 @@ export class HomePage {
 
     //既読
     async readUser(post: Post){
+        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+
         const alert = await this.alertCtrl.create({
             header: "既読",
-            message: "井深",
+            message: "読んだ人",
             buttons: [
                 {
                 text: "既読",
                 handler: () => {
-
-                    this.postscollection.doc(post.id).update({
-                        readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
-                    });
+                    console.log(this.postscollection.doc("readUser").get());
+                        this.postscollection.doc(post.id).update({
+                            readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
+                        });
+                    
                 }
                 },
                 {
