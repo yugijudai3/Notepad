@@ -82,13 +82,13 @@ export class HomePage {
     //既読
     async readUser(post: Post){
         this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
-
-        this.postscollection.doc(post.id).valueChanges().subscribe(data =>{
-            this.array = data.readUser;
-            this.Readuser = this.array.join("\n");
-            console.log(this.Readuser);
-        });
         
+        this.postscollection.doc(post.id).valueChanges().subscribe(data =>{
+            this.array = data["readUser"];
+            this.Readuser = this.array.join("\n");
+            console.log(data["readUser"]);
+        });
+
         const alert = await this.alertCtrl.create({
             header: "既読",
             message: this.Readuser,
