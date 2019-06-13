@@ -86,20 +86,26 @@ export class HomePage {
         this.postscollection.doc(post.id).valueChanges().subscribe(data =>{
             this.array = data["readUser"];
             this.Readuser = this.array.join("\n");
-            console.log(data["readUser"]);
+            console.log(this.Readuser);
+            // this.kidokuAlert(post);
         });
 
+    }
+
+    // アラート表示
+    async kidokuAlert(post){
         const alert = await this.alertCtrl.create({
+                
             header: "既読",
             message: this.Readuser,
             buttons: [
                 {
                 text: "既読",
                 handler: () => {
-                        this.postscollection.doc(post.id).update({
-                            readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
-                        });
-                    
+                    this.postscollection.doc(post.id).update({
+                        readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
+                    });
+                    alert.dismiss();
                 }
                 },
                 {

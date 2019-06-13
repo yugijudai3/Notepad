@@ -11,16 +11,19 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
+import { TabsComponent } from "./tabs/tabs.component"
+
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
     // tslint:disable-next-line:max-line-length
-    imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
+    imports: [BrowserModule, IonicModule, TabsComponent, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
     providers: [
         StatusBar,
         AngularFireModule,
         AngularFirestoreModule,
         AngularFireAuthModule,
+        TabsComponent,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
