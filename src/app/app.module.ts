@@ -17,13 +17,12 @@ import { TabsComponent } from "./tabs/tabs.component"
     declarations: [AppComponent],
     entryComponents: [],
     // tslint:disable-next-line:max-line-length
-    imports: [BrowserModule, IonicModule, TabsComponent, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
+    imports: [BrowserModule, IonicModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
     providers: [
         StatusBar,
         AngularFireModule,
         AngularFirestoreModule,
         AngularFireAuthModule,
-        TabsComponent,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],

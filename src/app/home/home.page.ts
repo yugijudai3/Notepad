@@ -87,7 +87,7 @@ export class HomePage {
             this.array = data["readUser"];
             this.Readuser = this.array.join("\n");
             console.log(this.Readuser);
-            // this.kidokuAlert(post);
+            this.kidokuAlert(post);
         });
 
     }

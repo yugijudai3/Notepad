@@ -38,7 +38,16 @@
   </ion-card>
 </ion-item-sliding>
 </ion-content>
-<app-tabs></app-tabs>
+<ion-tabs>
+  <ion-tab-bar slot="bottom" color="primary">
+    <ion-tab-button tab="tab1" click="memo">
+      <ion-icon name="pricetags"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="tab2">
+      <ion-icon name="calendar"></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
 
