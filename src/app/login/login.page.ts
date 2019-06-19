@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { LoginPageModule } from './login.module';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -20,10 +22,17 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private toastCtrl: ToastController,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private storage: Storage
   ){}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.storage.get("auth").then((val) =>{
+      if(val == null){
+        this.router.navigate(["/home"]);
+      }
+    });
+  }
 
   userLogin(){
     this.afAuth.auth.signInWithEmailAndPassword(this.login.email, this.login.password)
@@ -33,6 +42,7 @@ export class LoginPage implements OnInit {
         duration: 3000
       });
       await toast.present();
+      this.storage.set("auth", true);
       this.router.navigate(["/home"]);
     })
     .catch(async error => {
@@ -46,6 +56,7 @@ export class LoginPage implements OnInit {
 
   gotoSignup(){
     this.router.navigate(["/signup"]);
+    this.storage.remove("auth");
   }
 
 }
