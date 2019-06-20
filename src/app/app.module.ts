@@ -11,7 +11,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
-import { TabsComponent } from "./tabs/tabs.component";
+import * as firebase from 'firebase';
 
 
 @NgModule({
@@ -21,9 +21,6 @@ import { TabsComponent } from "./tabs/tabs.component";
     imports: [BrowserModule, IonicModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
     providers: [
         StatusBar,
-        AngularFireModule,
-        AngularFirestoreModule,
-        AngularFireAuthModule,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
