@@ -7,8 +7,6 @@ const routes: Routes = [
   { path: 'create-memo', loadChildren: './create-memo/create-memo.module#CreateMemoPageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-
-
 ];
 
 @NgModule({

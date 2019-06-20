@@ -19,10 +19,10 @@
 <ion-content>
   <ion-item-sliding>
   <ion-card *ngFor="let p of posts; let i = index">
-    <ion-card-content>
+    <ion-card-header color="primary">
       <h2 margin-bottom class="userName">{{p.userName}}</h2>
       <div margin-bottom class="message" ng-bind="multiLineText">{{p.message}}</div>
-    </ion-card-content>
+    </ion-card-header>
     <ion-col size="6" size-sm>
       <ion-button fill="clear" size="default" (click)="deletePost(p)">
         <ion-icon name="trash"></ion-icon>
@@ -38,16 +38,21 @@
   </ion-card>
 </ion-item-sliding>
 </ion-content>
-<ion-tabs>
-  <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button tab="tab1" click="memo">
-      <ion-icon name="pricetags"></ion-icon>
-    </ion-tab-button>
-    <ion-tab-button tab="tab2">
-      <ion-icon name="calendar"></ion-icon>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+<ion-footer>
+  <ion-toolbar>
+      <ion-tabs>
+          <ion-tab-bar slot="bottom" color="primary">
+            <ion-tab-button tab="tab1" click="memo">
+              <ion-icon name="pricetags"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="tab2">
+              <ion-icon name="calendar"></ion-icon>
+            </ion-tab-button>
+          </ion-tab-bar>
+        </ion-tabs>
+  </ion-toolbar>
+</ion-footer>
+
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
 

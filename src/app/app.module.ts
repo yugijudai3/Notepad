@@ -12,18 +12,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import { TabsComponent } from "./tabs/tabs.component";
-import { Storage } from '@ionic/storage';
 
 
 @NgModule({
     declarations: [AppComponent],
     entryComponents: [],
     // tslint:disable-next-line:max-line-length
-    imports: [BrowserModule, IonicModule, Storage, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
+    imports: [BrowserModule, IonicModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
     providers: [
         StatusBar,
         AngularFireModule,
-        Storage,
         AngularFirestoreModule,
         AngularFireAuthModule,
         SplashScreen,
