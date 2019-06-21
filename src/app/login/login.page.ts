@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginPageModule } from './login.module';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-login',
@@ -44,6 +45,7 @@ export class LoginPage implements OnInit {
       });
       await toast.present();
     });
+    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
   }
 
   gotoSignup(){
