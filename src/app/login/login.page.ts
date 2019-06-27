@@ -26,6 +26,11 @@ export class LoginPage implements OnInit {
   ){}
 
   ngOnInit() {
+    this.afAuth.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.router.navigate(["/home"]);
+      }
+    });
   }
 
   userLogin(){
