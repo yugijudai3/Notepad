@@ -3,5 +3,6 @@ export interface Post {
     userName: string;
     message: string;
     created: any;
+    theme: string;
     readUser: [];
 }
