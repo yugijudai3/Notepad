@@ -19,6 +19,7 @@ export class CreateMemoPage implements OnInit {
     message: string;
     post: Post;
     posts: Post[];
+    theme: string;
 
     postscollection: AngularFirestoreCollection<Post>;
 
@@ -47,7 +48,8 @@ export class CreateMemoPage implements OnInit {
         userName: this.afAuth.auth.currentUser.displayName,
         message: this.message,
         created: firebase.firestore.FieldValue.serverTimestamp(),
-        readUser: []
+        readUser: [],
+        theme: this.theme
       };
 
     //ここでFirestoreにデータを追加する
