@@ -29,9 +29,11 @@ export class CreateMemoPage implements OnInit {
         private afStore: AngularFirestore,
         private afAuth: AngularFireAuth,
         private toastCtrl: ToastController
-    ) { }
+    ) {}
 
   ngOnInit() {
+    this.theme = "primary";
+    this.getPosts();
     }
 
     // ホームに戻る
@@ -72,4 +74,17 @@ export class CreateMemoPage implements OnInit {
     });
       this.router.navigate(['/home']);
     }
+
+    changeColor(ev: any){
+      this.theme = ev.target.attributes.color.value;
+      console.log(this.theme);
+    }
+
+    getPosts(){
+      this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+
+      this.postscollection.valueChanges().subscribe(data => {
+          this.posts = data;
+      });
+  }
 }

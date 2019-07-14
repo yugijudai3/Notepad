@@ -8,6 +8,8 @@ import { async } from 'q';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { ActionSheetController } from '@ionic/angular';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 @Component({
     selector: 'app-home',
@@ -32,7 +34,8 @@ export class HomePage {
         private alertCtrl: AlertController,
         private toastCtrl: ToastController,
         private element: ElementRef,
-        private router: Router
+        private router: Router,
+        private actionSheet: ActionSheetController
     ){}
 
     ngOnInit(){
@@ -116,7 +119,7 @@ export class HomePage {
         });
         await alert.present();
     }
-
+    
     //ログアウト処理
     logout(){
         this.afStore.firestore.disableNetwork();

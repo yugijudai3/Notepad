@@ -1,6 +1,5 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>新規作成</ion-title>
     <ion-buttons slot="start">
       <ion-button
         end
@@ -28,6 +27,21 @@
       <ion-icon name="send" size="large"></ion-icon>
     </ion-button>
   </ion-item>
+  <ion-fab vertical="end" horizontal="end" edge="true">
+      <ion-fab-button [color]="this.theme">
+        <ion-icon name="color-palette"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-list side="bottom">
+        <ion-fab-button color="primary" (click)="changeColor($event)" type="submit" primary></ion-fab-button>
+        <ion-fab-button color="danger" (click)="changeColor($event)" type="submit" danger></ion-fab-button>
+        <ion-fab-button color="secondary" (click)="changeColor($event)" type="submit" secondary></ion-fab-button>
+        <ion-fab-button color="tertiary" (click)="changeColor($event)" type="submit" tertiary></ion-fab-button>
+        <ion-fab-button color="success" (click)="changeColor($event)" type="submit" success></ion-fab-button>
+        <ion-fab-button color="light" (click)="changeColor($event)" type="submit" light></ion-fab-button>
+        <ion-fab-button color="medium" (click)="changeColor($event)" type="submit" medium></ion-fab-button>
+        <ion-fab-button color="dark" (click)="changeColor($event)" type="submit" dark></ion-fab-button>
+      </ion-fab-list>
+    </ion-fab>
   </form>
 </ion-content>
 
