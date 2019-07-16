@@ -12,6 +12,7 @@ import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestor
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import * as firebase from 'firebase';
+import { FCM } from '@ionic-native/fcm';
 
 
 @NgModule({
