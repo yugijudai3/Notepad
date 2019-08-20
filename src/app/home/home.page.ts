@@ -1,17 +1,12 @@
 import { Component, ElementRef, Directive, HostListener, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
-import { sanitizeHtml } from '@angular/core/src/sanitization/sanitization';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/post';
 import { Router } from '@angular/router';
 import { Routes } from '@angular/router';
-import { async } from 'q';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { ActionSheetController } from '@ionic/angular';
-import { Action } from 'rxjs/internal/scheduler/Action';
-import { TabsPage } from '../tabs/tabs.page';
 
 const routes: Routes = [];
 
@@ -42,7 +37,6 @@ export class HomePage implements OnInit {
 
     ngOnInit() {
         this.afStore.firestore.enableNetwork();
-        this.getPosts();
     }
 
     // 投稿ページへ
@@ -51,7 +45,7 @@ export class HomePage implements OnInit {
     }
 
     home() {
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
         console.log('aaaa');
     }
 
@@ -97,7 +91,7 @@ export class HomePage implements OnInit {
         this.postscollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
 
         this.postscollection.doc(post.id).valueChanges().subscribe(data => {
-            this.array = data['readUser'];
+            // this.array = data['readUser'];
             this.Readuser = this.array.join('\n');
             console.log(this.Readuser);
             this.kidokuAlert(post);

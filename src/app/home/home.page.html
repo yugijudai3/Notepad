@@ -1,78 +1,51 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-        <ion-button (click)="logout()">
-            <ion-icon name="log-out"></ion-icon>
-          </ion-button>
+      <ion-button (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title>
       メモ帳
     </ion-title>
     <ion-buttons slot="end">
-        <ion-button end fill="clear" size="large" (click)="createMemo()">
-            新規作成
-        </ion-button>
-      </ion-buttons>
+      <ion-button end fill="clear" size="large" href="/create-memo" routerDirection="forward">
+        新規作成
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item-sliding>
-  <ion-card *ngFor="let p of posts; let i = index">
-    <ion-card-header [color]="p.theme">
-      <ion-item-sliding>
-        <ion-item  (click)="readUser(p)">
-          <ion-list lines="none">
+    <ion-card *ngFor="let p of posts; let i = index">
+      <ion-card-header [color]="p.theme">
+        <ion-item-sliding>
+          <ion-item (click)="readUser(p)">
+            <ion-list lines="none">
               <ion-item>
-                <ion-label margin-bottom class="userName">{{p.userName}}</ion-label>
+                <ion-label margin-bottom class="userName">{{
+                  p.userName
+                }}</ion-label>
               </ion-item>
               <ion-item>
-                <ion-label margin-bottom class="message" ng-bind="multiLineText" color="primary">{{p.message}}</ion-label>
+                <ion-label
+                  margin-bottom
+                  class="message"
+                  ng-bind="multiLineText"
+                  color="primary"
+                  >{{ p.message }}</ion-label
+                >
               </ion-item>
-          </ion-list>
-        </ion-item>
-        <ion-item-options side="end">
+            </ion-list>
+          </ion-item>
+          <ion-item-options side="end">
             <ion-item-option (click)="deletePost(p)" [color]="p.theme">
-                <ion-icon name="trash" size="large"></ion-icon>
+              <ion-icon name="trash" size="large"></ion-icon>
             </ion-item-option>
           </ion-item-options>
-      </ion-item-sliding>
-    </ion-card-header>
-  </ion-card>
-</ion-item-sliding>
+        </ion-item-sliding>
+      </ion-card-header>
+    </ion-card>
+  </ion-item-sliding>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-      <ion-tabs>
-          <ion-tab-bar slot="bottom" color="primary">
-            <ion-tab-button tabs="home" click="home()">
-              <ion-icon name="pricetags"></ion-icon>
-            </ion-tab-button>
-            <ion-tab-button tabs="album" click="album()">
-              <ion-icon name="images"></ion-icon>
-            </ion-tab-button>
-          </ion-tab-bar>
-        </ion-tabs>
-  </ion-toolbar>
-</ion-footer>
-
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#config-web-app -->
-
-<script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyCGlzRYWBKHz6cUzv_iG08auBiD-WojHh4",
-    authDomain: "notepad-9a5f2.firebaseapp.com",
-    databaseURL: "https://notepad-9a5f2.firebaseio.com",
-    projectId: "notepad-9a5f2",
-    storageBucket: "notepad-9a5f2.appspot.com",
-    messagingSenderId: "114549547445",
-    appId: "1:114549547445:web:23b3ece3fd393dfe"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-</script>

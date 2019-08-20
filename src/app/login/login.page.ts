@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { LoginPageModule } from './login.module';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 
 @Component({
     selector: 'app-login',
@@ -28,7 +27,7 @@ export class LoginPage implements OnInit {
     ngOnInit() {
         this.afAuth.auth.onAuthStateChanged((user) => {
             if (user) {
-                this.router.navigate(['/home']);
+                this.router.navigate(['/']);
             }
         });
     }
@@ -41,7 +40,7 @@ export class LoginPage implements OnInit {
                     duration: 3000
                 });
                 await toast.present();
-                this.router.navigate(['/home']);
+                this.router.navigate(['/']);
             })
             .catch(async error => {
                 const toast = await this.toastCtrl.create({
@@ -50,7 +49,7 @@ export class LoginPage implements OnInit {
                 });
                 await toast.present();
             });
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+        this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
     }
 
     gotoSignup() {
