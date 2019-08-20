@@ -36,6 +36,13 @@ export class HomePage implements OnInit {
     ) { }
 
     ngOnInit() {
+        this.afAuth.auth.onAuthStateChanged((user) => {
+            if (!user) {
+                this.router.navigate(['/login']);
+            } else {
+                this.getPosts();
+            }
+        });
         this.afStore.firestore.enableNetwork();
     }
 
