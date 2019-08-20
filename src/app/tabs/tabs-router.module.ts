@@ -4,41 +4,44 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
     {
-      path: 'tabs',
-      component: TabsPage,
-      children:[
-        { path: 'home' ,
-          children: [
+        path: 'tabs',
+        component: TabsPage,
+        children: [
             {
-              path: '',
-              loadChildren: () =>
-                import("../home/home.module").then(m => m.HomePagemodule)
-            }
-          ]},
-        { path: 'album',
-          children: [
+                path: 'home',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../home/home.module#HomePageModule'
+                    }
+                ]
+            },
             {
-              path: '',
-              loadChildren: '../album/album.module#AlbumPageModule'
+                path: 'album',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../album/album.module#AlbumPageModule'
+                    }
+                ]
+            },
+            {
+                path: '',
+                redirectTo: '/app/tabs/home',
+                pathMatch: 'full'
             }
-          ]},
-          {
-            path: '',
-            redirectTo: '/app/tabs/home',
-            pathMatch: 'full'
-          }
-      ]
+        ]
     }
-  ];
+];
 
-  @NgModule({
+@NgModule({
     imports:
-      [
-        RouterModule.forChild(routes)
-      ],
+        [
+            RouterModule.forChild(routes)
+        ],
     exports:
-      [
-        RouterModule
-      ]
-  })
-  export class TabsPageRoutingModule {}
+        [
+            RouterModule
+        ]
+})
+export class TabsPageRoutingModule { }

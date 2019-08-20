@@ -1,4 +1,4 @@
-import { Component, ElementRef, Directive, HostListener } from '@angular/core';
+import { Component, ElementRef, Directive, HostListener, OnInit } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { sanitizeHtml } from '@angular/core/src/sanitization/sanitization';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
@@ -13,24 +13,22 @@ import { ActionSheetController } from '@ionic/angular';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { TabsPage } from '../tabs/tabs.page';
 
-const routes: Routes =[]
+const routes: Routes = [];
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
     message: string;
     post: Post;
     posts: Post[];
     array: any[];
     Readuser: string;
-    
-  
-    postscollection: AngularFirestoreCollection<Post>;
 
+    postscollection: AngularFirestoreCollection<Post>;
 
     constructor(
         private afStore: AngularFirestore,
@@ -40,49 +38,48 @@ export class HomePage {
         private element: ElementRef,
         private router: Router,
         private actionSheet: ActionSheetController
-    ){}
+    ) { }
 
-    ngOnInit(){
+    ngOnInit() {
         this.afStore.firestore.enableNetwork();
         this.getPosts();
     }
 
-    
-    //投稿ページへ
-    createMemo(){
+    // 投稿ページへ
+    createMemo() {
         this.router.navigate(['/create-memo']);
     }
 
-    home(){
+    home() {
         this.router.navigate(['/home']);
-        console.log("aaaa");
+        console.log('aaaa');
     }
 
-    album(){
+    album() {
         this.router.navigate(['/album']);
     }
 
-    //ログインページへ
-    gotoLogin(){
+    // ログインページへ
+    gotoLogin() {
         this.router.navigateByUrl('/login');
     }
 
-    //投稿をデータベースから取得
-    getPosts(){
-        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+    // 投稿をデータベースから取得
+    getPosts() {
+        this.postscollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
 
         this.postscollection.valueChanges().subscribe(data => {
             this.posts = data;
         });
     }
 
-    //投稿を削除
-    deletePost(post: Post){
-        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
+    // 投稿を削除
+    deletePost(post: Post) {
+        this.postscollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
 
-        this.postscollection.doc(post.id).delete().then(async() => {
+        this.postscollection.doc(post.id).delete().then(async () => {
             const toast = await this.toastCtrl.create({
-                message: "投稿を削除しました",
+                message: '投稿を削除しました',
                 duration: 3000
             });
             await toast.present();
@@ -95,60 +92,60 @@ export class HomePage {
         });
     }
 
-    //既読
-    async readUser(post: Post){
-        this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
-        
-        this.postscollection.doc(post.id).valueChanges().subscribe(data =>{
-            this.array = data["readUser"];
-            this.Readuser = this.array.join("\n");
+    // 既読
+    async readUser(post: Post) {
+        this.postscollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
+
+        this.postscollection.doc(post.id).valueChanges().subscribe(data => {
+            this.array = data['readUser'];
+            this.Readuser = this.array.join('\n');
             console.log(this.Readuser);
             this.kidokuAlert(post);
         });
 
     }
 
-    // アラート表示
-    async kidokuAlert(post){
+    //  アラート表示
+    async kidokuAlert(post) {
         const alert = await this.alertCtrl.create({
-                
-            header: "既読",
+
+            header: '既読',
             message: this.Readuser,
             buttons: [
                 {
-                text: "既読",
-                handler: () => {
-                    this.postscollection.doc(post.id).update({
-                        readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
-                    });
-                    alert.dismiss();
-                }
+                    text: '既読',
+                    handler: () => {
+                        this.postscollection.doc(post.id).update({
+                            readUser: firebase.firestore.FieldValue.arrayUnion(this.afAuth.auth.currentUser.displayName)
+                        });
+                        alert.dismiss();
+                    }
                 },
                 {
-                text: "閉じる",
-                role: "cancel"
+                    text: '閉じる',
+                    role: 'cancel'
                 }
             ]
         });
         await alert.present();
     }
-    
-    //ログアウト処理
-    logout(){
+
+    // ログアウト処理
+    logout() {
         this.afStore.firestore.disableNetwork();
-        this.afAuth.auth.signOut().then(async() => {
-        const toast = await this.toastCtrl.create({
-            message: "ログアウトしました",
-            duration: 3000
-        });
-        await toast.present();
-        this.router.navigate(["/login"]);
+        this.afAuth.auth.signOut().then(async () => {
+            const toast = await this.toastCtrl.create({
+                message: 'ログアウトしました',
+                duration: 3000
+            });
+            await toast.present();
+            this.router.navigate(['/login']);
         }).catch(async error => {
-        const toast = await this.toastCtrl.create({
-            message: error.toString(),
-            duration: 3000
-        });
-        await toast.present();
+            const toast = await this.toastCtrl.create({
+                message: error.toString(),
+                duration: 3000
+            });
+            await toast.present();
         });
     }
 }
