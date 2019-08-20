@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Routes } from '@angular/router';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import { ActionSheetController } from '@ionic/angular';
 
 const routes: Routes = [];
