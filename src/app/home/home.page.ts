@@ -95,13 +95,18 @@ export class HomePage implements OnInit {
 
     // 既読
     async readUser(post: Post) {
-        this.postscollection = this.afStore.collection('posts', ref => ref.orderBy('created', 'desc'));
-
-        this.postscollection.doc(post.id).valueChanges().subscribe(data => {
-            // this.array = data['readUser'];
-            this.Readuser = this.array.join('\n');
-            console.log(this.Readuser);
+        this.afStore.doc('posts/' + post.id).ref.get().then(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                console.log('Document data:', data);
+                this.array = data.readUser;
+                this.Readuser = this.array.join('\n');
+            } else {
+                console.log('No such document!');
+            }
             this.kidokuAlert(post);
+        }).catch((error) => {
+            console.log('Error getting document:', error);
         });
 
     }
@@ -129,6 +134,7 @@ export class HomePage implements OnInit {
             ]
         });
         await alert.present();
+        this.array = [];
     }
 
     // ログアウト処理
