@@ -8,16 +8,8 @@ import { Router } from '@angular/router';
 })
 export class TabsPage implements OnInit {
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor( ) { }
 
-  ngOnInit() {
-  }
-
-  home(){
-    this.router.navigate(['/home']);
-    console.log("aaaa");
-}
+  ngOnInit() { }
 
 }

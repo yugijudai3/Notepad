@@ -11,8 +11,7 @@ const routes: Routes = [
           children: [
             {
               path: '',
-              loadChildren: () =>
-                import("../home/home.module").then(m => m.HomePagemodule)
+              loadChildren: '../home/home.module#HomePageModule'
             }
           ]},
         { path: 'album',
@@ -24,10 +23,15 @@ const routes: Routes = [
           ]},
           {
             path: '',
-            redirectTo: '/app/tabs/home',
+            redirectTo: '/tabs/home',
             pathMatch: 'full'
           }
       ]
+    },
+    {
+      path: "",
+      redirectTo: "/tabs/tabs/home",
+      pathMatch: "full"
     }
   ];
 

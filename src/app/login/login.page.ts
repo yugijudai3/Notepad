@@ -28,7 +28,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.afAuth.auth.onAuthStateChanged((user) => {
       if (user) {
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/tabs"]);
       }
     });
   }
@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
         duration: 3000
       });
       await toast.present();
-      this.router.navigate(["/home"]);
+      this.router.navigate(["/tabs"]);
     })
     .catch(async error => {
       const toast = await this.toastCtrl.create({

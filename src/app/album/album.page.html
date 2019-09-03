@@ -1,6 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>album</ion-title>
+      <ion-buttons slot="start">
+          <ion-button (click)="gotoLogin()">
+              <ion-icon name="log-out"></ion-icon>
+            </ion-button>
+      </ion-buttons>
+    <ion-title>アルバム</ion-title>
+    <ion-buttons slot="end">
+        <ion-button end fill="clear" size="large" (click)="upload()">
+            アップロード
+        </ion-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

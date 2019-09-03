@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorageModule, AngularFireStorage } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/auth';
 import * as firebase from 'firebase';
@@ -18,7 +19,15 @@ import * as firebase from 'firebase';
     declarations: [AppComponent],
     entryComponents: [],
     // tslint:disable-next-line:max-line-length
-    imports: [BrowserModule, IonicModule, IonicModule.forRoot(), AppRoutingModule, AngularFireModule.initializeApp(environment.firebase), AngularFirestoreModule, AngularFireAuthModule],
+    imports: [BrowserModule,
+              IonicModule,
+              IonicModule.forRoot(),
+              AppRoutingModule,
+              AngularFireModule.initializeApp(environment.firebase),
+              AngularFirestoreModule,
+              AngularFireAuthModule,
+              AngularFireStorage,
+              AngularFireStorageModule],
     providers: [
         StatusBar,
         SplashScreen,

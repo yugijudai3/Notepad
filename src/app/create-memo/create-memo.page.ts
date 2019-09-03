@@ -39,7 +39,7 @@ export class CreateMemoPage implements OnInit {
     // ホームに戻る
     cancel() {
         this.afStore.firestore.enableNetwork();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tabs']);
     }
 
     addPost(){
@@ -72,7 +72,7 @@ export class CreateMemoPage implements OnInit {
       });
       await toast.present();
     });
-      this.router.navigate(['/home']);
+      this.router.navigate(['/tabs']);
     }
 
     changeColor(ev: any){

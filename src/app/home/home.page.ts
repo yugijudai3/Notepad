@@ -45,21 +45,13 @@ export class HomePage {
     ngOnInit(){
         this.afStore.firestore.enableNetwork();
         this.getPosts();
+        this.router.navigate(['/tabs']);
     }
 
     
     //投稿ページへ
     createMemo(){
         this.router.navigate(['/create-memo']);
-    }
-
-    home(){
-        this.router.navigate(['/home']);
-        console.log("aaaa");
-    }
-
-    album(){
-        this.router.navigate(['/album']);
     }
 
     //ログインページへ
