@@ -8,12 +8,14 @@
     <ion-title>アルバム</ion-title>
     <ion-buttons slot="end">
         <ion-button end fill="clear" size="large" (click)="takePicture()">
-            アップロード
+          <ion-icon name="camera"></ion-icon>
         </ion-button>
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <img [src]="captureDataUrl" *ngIf="captureDataUrl" height="400"/>
+  <ion-button (click)="upload()" *ngIf="captureDataUrl">アップロード</ion-button>
 
 </ion-content>
