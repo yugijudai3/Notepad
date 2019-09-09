@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { storage } from 'firebase';
+import { ToastController } from '@ionic/angular';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { File } from '@ionic-native/file/ngx';
@@ -24,7 +25,7 @@ export class AlbumPage implements OnInit {
     private afAuth: AngularFireAuth,
     private file: File,
     private camera: Camera,
-    
+    private toast: ToastController
   ) { }
 
   ngOnInit() {
@@ -42,8 +43,12 @@ export class AlbumPage implements OnInit {
       const filename = Math.floor(Date.now() / 1000);
       const imageRef = sRef.child("images/" + filename + ".jpg");
 
-      imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
-        console.log("uploaded");
+      imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL).then(async(snapshot) => {
+        const toast = await this.toast.create({
+          message: "アップロードしました",
+          duration: 1500
+        });
+        await toast.present();
       });
       
   }
