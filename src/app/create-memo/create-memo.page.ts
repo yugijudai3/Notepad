@@ -28,11 +28,11 @@ export class CreateMemoPage implements OnInit {
         private router: Router,
         private afStore: AngularFirestore,
         private afAuth: AngularFireAuth,
-        private toastCtrl: ToastController
+        private toastCtrl: ToastController,
+        private ElementRef: ElementRef
     ) {}
 
   ngOnInit() {
-    this.theme = "primary";
     this.getPosts();
     }
 
