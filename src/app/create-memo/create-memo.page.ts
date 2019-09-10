@@ -54,25 +54,25 @@ export class CreateMemoPage implements OnInit {
         theme: this.theme
       };
 
-    //ここでFirestoreにデータを追加する
-    this.afStore.collection("posts").add(this.post).then(docRef => {
-      //一度投稿を追加した後に、idを更新する
-      this.postscollection.doc(docRef.id).update({
-        id: docRef.id
-      });
+      //ここでFirestoreにデータを追加する
+      this.afStore.collection("posts").add(this.post).then(docRef => {
+        //一度投稿を追加した後に、idを更新する
+        this.postscollection.doc(docRef.id).update({
+          id: docRef.id
+        });
 
-      //追加できたら入力フィールドを空にする
-      this.message = "";
-    }).catch(async error =>{
-      console.log(error);
-      //エラーをToastControllerで表示
-      const toast = await this.toastCtrl.create({
-        message: error.toString(),
-        duration: 3000
+        //追加できたら入力フィールドを空にする
+        this.message = "";
+      }).catch(async error =>{
+        console.log(error);
+        //エラーをToastControllerで表示
+        const toast = await this.toastCtrl.create({
+          message: error.toString(),
+          duration: 3000
+        });
+        await toast.present();
       });
-      await toast.present();
-    });
-      this.router.navigate(['/tabs']);
+        this.router.navigate(['/tabs']);
     }
 
     changeColor(ev: any){
