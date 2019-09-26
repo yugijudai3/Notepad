@@ -33,6 +33,7 @@ export class CreateMemoPage implements OnInit {
     ) {}
 
   ngOnInit() {
+    this.theme = "primary";
     this.getPosts();
     }
 
@@ -43,7 +44,6 @@ export class CreateMemoPage implements OnInit {
     }
 
     addPost(){
-      this.postscollection = this.afStore.collection("posts", ref => ref.orderBy("created", "desc"));
 
       this.post ={
         id: "",
@@ -53,6 +53,7 @@ export class CreateMemoPage implements OnInit {
         readUser: [],
         theme: this.theme
       };
+      console.log(this.message);
 
       //ここでFirestoreにデータを追加する
       this.afStore.collection("posts").add(this.post).then(docRef => {
@@ -68,7 +69,7 @@ export class CreateMemoPage implements OnInit {
         //エラーをToastControllerで表示
         const toast = await this.toastCtrl.create({
           message: error.toString(),
-          duration: 3000
+          duration: 1000
         });
         await toast.present();
       });

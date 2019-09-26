@@ -29,7 +29,6 @@ export class AlbumPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(firebase.storage().ref().getDownloadURL());
   }
 
     //ログインページへ
@@ -42,8 +41,6 @@ export class AlbumPage implements OnInit {
       let sRef = firebase.storage().ref();
       const filename = Math.floor(Date.now() / 1000);
       const imageRef = sRef.child("images/" + filename + ".jpg");
-
-      this.afStore.collection("images").add(filename).then
 
       imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL).then(async(snapshot) => {
         const toast = await this.toast.create({
